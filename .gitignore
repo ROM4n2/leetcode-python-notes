@@ -1,1 +1,5 @@
 /.teach
+/.vscode
+/.idea
+/.venv
+pyproject.toml
