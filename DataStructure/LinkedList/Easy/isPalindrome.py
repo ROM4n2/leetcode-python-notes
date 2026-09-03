@@ -12,18 +12,26 @@ class Solution:
             fast = fast.next.next
             slow = slow.next
         # Reverse the second half
-        prev = None
-        while slow:
-            next_temp = slow.next
-            slow.next = prev
-            prev = slow
-            slow = next_temp
+        prev = self.reverse(slow)
         # Compare the first and second halves
         left = head
         right = prev
+        res = True
         while right:
             if left.val != right.val:
-                return False
-            left = left.next
+                res = False
+                break
+            left= left.next
             right = right.next
-        return True
+        # Restore
+        self.reverse(prev)
+        return res
+
+    def reverse(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev = None
+        while head:
+            next_tmp = head.next
+            head.next = prev
+            prev = head
+            head = next_tmp
+        return prev
